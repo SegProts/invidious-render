@@ -1,4 +1,10 @@
 FROM quay.io/invidious/invidious:latest
 
-EXPOSE 3000
-CMD ["sh", "-c", "bundle exec ruby main.cr"]
+# Render требует переменную PORT
+ENV PORT=3000
+
+# Открываем порт
+EXPOSE $PORT
+
+# Правильная команда запуска Invidious (без bundle)
+CMD ["./bin/invidious"]
